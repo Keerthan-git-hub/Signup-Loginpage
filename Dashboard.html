@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+        width: 400px;
+        height: 400px;
+        margin: auto;      
+    }
+    #container > h1{
+        color: orangered;
+        font-family: sans-serif;
+        padding-left: 12%;
+    }
+    /*  */
+    #container > button{
+        background-color: orangered;
+            border-color:orangered;
+            margin:0px 70px;
+            font-size: 20px;
+            border-radius: 5px;
+            padding:3px 10px;
+            /* margin-right: 30%; */
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Dashboard</h1>
+        <h2 id="statement">Welcome to ur Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        const user=JSON.parse(localStorage.getItem("loggedInUser"))
+
+        function logout(){
+            let confirmation=confirm("are you sure you want to logout!!")
+            if(confirmation){
+            localStorage.removeItem("loggedInUser")
+            window.location.href="login.html"
+            }else{
+                alert("Logout cancelled. You're staying on the dashboard.");
+            }
+        }
+
+    </script>
+</body>
+</html>

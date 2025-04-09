@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form >
+        <input type="email" placeholder="enter email" id="email" required>
+        <input type="password" placeholder="enter pwsd" id="password" required>
+        <button onclick="handleLoginDetails()">Login</button>
+        <p>If you don't have an account <a href="signup.html">Signup</a></p>
+    </form>
+        <script>
+        function handleLoginDetails(){
+            
+            let loginEmail=document.getElementById("email").value;
+            let loginPassword=document.getElementById("password").value;
+
+            let allUsers=JSON.parse(localStorage.getItem("allUsers"))
+
+            let userFound=allUsers.find((x)=>x.loginEmail===email && xloginPassword===password)
+
+            if(userFound){
+                alert("logged in successfully")
+                localStorage.setItem("loggedInUser",JSON.stringify(userFound.email))
+                window.location.href="Dashboard.html"
+            }
+
+        }
+        </script>
+    </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <style>
+    #container{
+        width: 400px;
+        height: 400px;
+        margin: auto;      
+    }
+    #container > .formTag{
+            padding: 50px 0px;
+            font-size: large;
+        }
+        #container > .formTag >h1{
+            color: orangered;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #container > .formTag >button{
+            background-color: orangered;
+            border-color:orangered;
+            margin:0px 70px;
+            font-size: 20px;
+            border-radius: 5px;
+            padding:3px 10px;
+        }
+
+    
+  </style>
+</head>
+<body>
+  <div id="container">
+    <form onsubmit="handleLoginDetails(event)" class="formTag">
+        <h1>Login Page</h1>
+        <label for="">Email :</label>
+        <input type="email" placeholder="Enter email" id="email" required /><br><br>
+        <label for="">Password :</label>
+        <input type="password" placeholder="Enter password" id="password" required /><br><br>
+        <button type="submit">Login</button><br><br>
+        <p>If you don't have an account <a href="signup.html">Signup</a></p>
+      </form>
+  </div>
+
+  <script>
+    function handleLoginDetails(event) {
+      event.preventDefault(); // Prevent form from submitting
+
+      const loginEmail = document.getElementById("email").value;
+      const loginPassword = document.getElementById("password").value;
+
+      const allUsers = JSON.parse(localStorage.getItem("allUsers")) || [];
+
+      const userFound = allUsers.find(
+        (user) => user.email === loginEmail && user.password === loginPassword
+      );
+
+      if (userFound) {
+        alert("Logged in successfully!");
+        localStorage.setItem("loggedInUser", JSON.stringify(userFound));
+        window.location.href = "Dashboard.html";
+      } else {
+        alert("Invalid email or password");
+      }
+    }
+  </script>
+</body>
+</html>

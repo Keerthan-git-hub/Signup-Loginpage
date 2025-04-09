@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            
+        }
+        #container > .formTag{
+            padding: 50px 0px;
+            font-size: large;
+        }
+        #container > .formTag >h1{
+            color: orangered;
+            font-family: sans-serif;
+        }
+        #container > .formTag >button{
+            background-color: orangered;
+            border-color:orangered;
+            margin:0px 70px;
+            font-size: 20px;
+            border-radius: 5px;
+            padding:3px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        
+        <form action="" onsubmit="handleSubmitSignup(event)" class="formTag">
+            <h1>Signup Here</h1>
+            <label for="">Name :</label>
+            <input type="text" placeholder="name here" id="name" required><br><br>
+            <label for="">Email :</label>
+            <input type="email" placeholder="email here" id="email" required><br><br>
+            <label for="">Password :</label>
+            <input type="password" placeholder="pwsd here" id="password" required><br><br>
+            <button type="submit">Signup</button>
+    
+            <p>already have an account <a href="login.html">login</a></p>
+        </form>
+    </div>
+
+    <script>
+        function handleSubmitSignup(e){
+        e.preventDefault();
+    let Signupname=document.getElementById("name").value.trim()
+    let Signupemail=document.getElementById("email").value.trim()
+    let Signuppassword=document.getElementById("password").value.trim()
+    
+    let allUsers=JSON.parse(localStorage.getItem("allUsers")) || []
+    const existedUser=allUsers.find(x=>x.email===Signupemail)
+    if(existedUser){
+        return alert("already user exists please try with another email")
+    }
+
+    let newUser={
+       name:Signupname,
+       email:Signupemail,
+       password:Signuppassword
+    }
+    allUsers.push(newUser)
+
+    let allUsers1=localStorage.setItem("allUsers",JSON.stringify(allUsers));
+    window.location.href="login.html"
+}
+    </script>
+
+    
+</body>
+</html>
